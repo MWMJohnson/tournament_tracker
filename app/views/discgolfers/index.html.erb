@@ -1,0 +1,5 @@
+<h1><% @discgolfers.each do |discgolfer| %></h1>
+  <h3><%= discgolfer.name %></h3>
+  <p>Rating: <%= discgolfer.rating %></p>
+  <p>PDGA Member: <%= discgolfer.pdga_member %></p>
+<% end %>
