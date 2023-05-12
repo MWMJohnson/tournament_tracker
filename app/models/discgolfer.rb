@@ -1,0 +1,3 @@
+class Discgolfer < ApplicationRecord
+  
+end
