@@ -24,8 +24,4 @@ RSpec.describe "tournaments index page", type: :feature do
     expect(page).to have_content(@tournament_2.name)
     expect(page).to have_content("Regional Pro Open 1")
   end
-
-
-
-
 end
