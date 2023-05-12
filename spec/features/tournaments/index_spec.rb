@@ -1,3 +1,11 @@
+# [X] done
+
+# User Story 1, Parent Index 
+
+# For each parent table
+# As a visitor
+# When I visit '/parents'
+# Then I see the name of each parent record in the system
 require "rails_helper"
 
 RSpec.describe "tournaments index page", type: :feature do
@@ -11,10 +19,10 @@ RSpec.describe "tournaments index page", type: :feature do
 
     expect(page).to have_content(@tournament.name)
     expect(page).to have_content("Regional AM Open 1")
-    expect(page).to have_content("Course: #{@tournament.course}")
-    expect(page).to have_content("Date: #{@tournament.date}")
-    expect(page).to have_content("Entry fee: $ #{@tournament.entry_fee}")
-    expect(page).to have_content("Professionals only: #{@tournament.pdga_members_only}")
+    # expect(page).to have_content("Course: #{@tournament.course}")
+    # expect(page).to have_content("Date: #{@tournament.date}")
+    # expect(page).to have_content("Entry fee: $ #{@tournament.entry_fee}")
+    # expect(page).to have_content("Professionals only: #{@tournament.pdga_members_only}")
     #should I be testing differently or more?
     expect(page).to have_content(@tournament_2.name)
     expect(page).to have_content("Regional Pro Open 1")
