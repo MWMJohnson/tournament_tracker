@@ -5,7 +5,7 @@ RSpec.describe "discgolfers index page", type: :feature do
   before :each do
     @dg_1 = Discgolfer.create!(name: "Eagle McMahon", rating: 1046, pdga_member: true)
     @dg_2 = Discgolfer.create!(name: "Channing Smith", rating: 450, pdga_member: false)
-    end
+  end
 
     # [X] done
 
