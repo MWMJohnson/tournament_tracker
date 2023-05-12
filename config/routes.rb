@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   get '/tournaments', to: 'tournaments#index'
   get '/tournaments/:id', to: 'tournaments#show'
+  get '/discgolfers', to: 'discgolfers#index'
 end

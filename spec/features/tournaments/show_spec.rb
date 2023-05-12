@@ -30,6 +30,4 @@ RSpec.describe 'the tournaments show page' do
     expect(page).to have_content("Entry fee: $ #{@tournament.entry_fee}")
     expect(page).to have_content("Professionals only: #{@tournament.pdga_members_only}")    
   end
-
-
 end
