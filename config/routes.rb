@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get '/tournaments', to: 'tournaments#index'
+  get '/tournaments/:id', to: 'tournaments#show'
 end
