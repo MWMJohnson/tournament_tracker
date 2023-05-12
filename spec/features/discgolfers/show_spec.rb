@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'the discgolfers show page' do
   before :each do
-    @dg_1 = Discgolfer.create!(name: "Eagle McMahon", rating: 1046, pdga_member: true)
-    @dg_2 = Discgolfer.create!(name: "Channing Smith", rating: 450, pdga_member: false)
+    @tournament = Tournament.create!(name: "Regional AM Open 1", course: "Village Greens", date: Date.new(2023,6,1), entry_fee: 100, pdga_members_only: false)
+    @tournament_2 = Tournament.create!(name: "Regional Pro Open 1", course: "Fehringer Ranch", date: Date.new(2023,6,2), entry_fee: 200, pdga_members_only: true)
+    @dg_1 = @tournament.discgolfers.create!(name: "Eagle McMahon", rating: 1046, pdga_member: true)
+    @dg_2 = @tournament_2.discgolfers.create!(name: "Channing Smith", rating: 450, pdga_member: false)
   end
 
   #   [X] done
