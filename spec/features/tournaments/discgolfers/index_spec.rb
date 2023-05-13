@@ -53,7 +53,15 @@ RSpec.describe 'Tournaments discgolfers index' do
     expect(page).to have_content("PDGA Member: #{@dg_7.pdga_member}")   
   end
 
-  it "displays each discgolfers in the order they were created" do
+  # [X] done
+
+  # User Story 6, Parent Index sorted by Most Recently Created 
+
+  # As a visitor
+  # When I visit the parent index,
+  # I see that records are ordered by most recently created first
+  # And next to each of the records I see when it was created
+  it "displays each discgolfer in the order they were created" do
 
     visit "/tournaments/#{@tournament_2.id}/discgolfers"
     
