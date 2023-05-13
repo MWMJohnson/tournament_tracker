@@ -1,0 +1,6 @@
+<h1> Discgolfers in <%="#{@tournament.name}"%></h1>
+<% @discgolfers.each do |discgolfer| %>
+  <h2><%= discgolfer.name %></h2>
+  <p>Rating: <%= "#{discgolfer.rating}" %></p>
+  <p>PDGA Member: <%= "#{discgolfer.pdga_member}" %></p>
+<% end %>
