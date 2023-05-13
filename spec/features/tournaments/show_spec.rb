@@ -1,3 +1,12 @@
+# [X] done
+
+# User Story 2, Parent Show 
+
+# As a visitor
+# When I visit '/parents/:id'
+# Then I see the parent with that id including the parent's attributes
+# (data from each column that is on the parent table)
+
 require 'rails_helper'
 
 RSpec.describe 'the tournaments show page' do
@@ -6,14 +15,6 @@ RSpec.describe 'the tournaments show page' do
   @tournament_2 = Tournament.create!(name: "Regional Pro Open 1", course: "Fehringer Ranch", date: Date.new(2023,6,2), entry_fee: 200, pdga_members_only: true)
   end
 
-  # [X] done
-
-  # User Story 2, Parent Show 
-
-  # As a visitor
-  # When I visit '/parents/:id'
-  # Then I see the parent with that id including the parent's attributes
-  # (data from each column that is on the parent table)
   it 'displays the tournament name' do
     visit "/tournaments/#{@tournament.id}"
 
@@ -21,7 +22,7 @@ RSpec.describe 'the tournaments show page' do
     expect(page).to_not have_content(@tournament_2.name)
   end
 
-  it 'displays the attributes of a tournament' do
+  it 'displays the other attributes of the tournament' do
     visit "/tournaments/#{@tournament.id}"
 
     expect(page).to have_content("Regional AM Open 1")
