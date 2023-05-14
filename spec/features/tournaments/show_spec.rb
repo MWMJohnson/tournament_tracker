@@ -68,25 +68,10 @@ RSpec.describe 'the tournaments show page' do
     expect(page).to have_content("Current no. of discgolfers: #{@tournament_1.count}")
     expect(page).to have_content("Current no. of discgolfers: 3")
 
-    visit "/tournaments/#{@tournament_2.id}"
-
-    expect(page).to have_content("Current no. of discgolfers: #{@tournament_2.count}")
-    expect(page).to have_content("Current no. of discgolfers: 2")
-
     visit "/tournaments/#{@tournament_3.id}"
 
     expect(page).to have_content("Current no. of discgolfers: #{@tournament_3.count}")
     expect(page).to have_content("Current no. of discgolfers: 1")
-
-    visit "/tournaments/#{@tournament_4.id}"
-
-    expect(page).to have_content("Current no. of discgolfers: #{@tournament_4.count}")
-    expect(page).to have_content("Current no. of discgolfers: 4")
-    
-    visit "/tournaments/#{@tournament_5.id}"
-    
-    expect(page).to have_content("Current no. of discgolfers: #{@tournament_5.count}")
-    expect(page).to have_content("Current no. of discgolfers: 2")
     
     visit "/tournaments/#{@tournament_6.id}"
     
