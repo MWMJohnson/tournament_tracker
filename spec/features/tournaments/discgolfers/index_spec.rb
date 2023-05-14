@@ -52,14 +52,25 @@ RSpec.describe 'Tournaments discgolfers index' do
     expect(page).to have_content("Rating: #{@dg_7.rating}")
     expect(page).to have_content("PDGA Member: #{@dg_7.pdga_member}")   
   end
-
-  it "displays each discgolfers in the order they were created" do
+  
+  # PLEASE READ! Below, I created this test and functionality for this index at first accidentally for user story 6 instead of the tournaments#index, but since it works I decided to leave it in here.
+  
+  it "displays each discgolfer in the order they were created" do
 
     visit "/tournaments/#{@tournament_2.id}/discgolfers"
     
-    disc_golfers = page.all('h2').map(&:text)
-    expected = ["Channing Smith", "Bob Dylan", "Rachel Dirk", "Joe Ye", "Ralph Lauren", "Willy Nelseon"]
-    expect(disc_golfers).to eq(expected)
+    actual = page.all('h2').map(&:text)
+
+    expected = [
+      "Channing Smith", 
+      "Bob Dylan", 
+      "Rachel Dirk", 
+      "Joe Ye", 
+      "Ralph Lauren", 
+      "Willy Nelseon"
+      ]
+
+    expect(actual).to eq(expected)
 
     @dg_7.update(created_at:1.days.ago)
     @dg_8.update(created_at:2.days.ago)
@@ -70,9 +81,18 @@ RSpec.describe 'Tournaments discgolfers index' do
     
     visit "/tournaments/#{@tournament_2.id}/discgolfers"
 
-    disc_golfers = page.all('h2').map(&:text)
-    expected = ["Willy Nelseon", "Ralph Lauren", "Joe Ye", "Rachel Dirk", "Bob Dylan", "Channing Smith"]
-    expect(disc_golfers).to eq(expected)
+    actual = page.all('h2').map(&:text)
+
+    expected = [
+      "Willy Nelseon", 
+      "Ralph Lauren", 
+      "Joe Ye", 
+      "Rachel Dirk", 
+      "Bob Dylan", 
+      "Channing Smith"
+      ]
+
+    expect(actual).to eq(expected)
   end
 
 end
