@@ -60,7 +60,7 @@ RSpec.describe "tournaments index page", type: :feature do
 
     visit "/tournaments"
     
-    tournaments = page.all('h3').map(&:text)
+    actual = page.all('h3').map(&:text)
 
     expected = [
       "#{@tournament_1.name} created on: #{@tournament_1.created_at}",
@@ -71,7 +71,7 @@ RSpec.describe "tournaments index page", type: :feature do
       "#{@tournament_6.name} created on: #{@tournament_6.created_at}"
     ]
 
-    expect(tournaments).to eq(expected)
+    expect(actual).to eq(expected)
 
     @tournament_1.update(created_at:3.days.ago)
     @tournament_2.update(created_at:3.days.ago)
@@ -82,7 +82,7 @@ RSpec.describe "tournaments index page", type: :feature do
     
     visit "/tournaments"
 
-    tournaments = page.all('h3').map(&:text)
+    actual = page.all('h3').map(&:text)
 
     expected = [
       "#{@tournament_5.name} created on: #{@tournament_5.created_at}",
@@ -93,7 +93,7 @@ RSpec.describe "tournaments index page", type: :feature do
       "#{@tournament_4.name} created on: #{@tournament_4.created_at}"
     ]
 
-    expect(tournaments).to eq(expected)
+    expect(actual).to eq(expected)
 
   end
 end
