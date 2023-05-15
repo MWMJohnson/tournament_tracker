@@ -48,7 +48,7 @@ RSpec.describe "tournaments index page", type: :feature do
     expect(page).to have_content("Regional AM Open 1")
   end
 
-    # [X] done
+  # [X] done
 
   # User Story 6, Parent Index sorted by Most Recently Created 
 
@@ -59,41 +59,47 @@ RSpec.describe "tournaments index page", type: :feature do
   it "displays each discgolfer in the order they were created with the created_at attribute listed" do
 
     visit "/tournaments"
-    
     actual = page.all('h3').map(&:text)
 
     expected = [
-      "#{@tournament_1.name} created on: #{@tournament_1.created_at}",
-      "#{@tournament_2.name} created on: #{@tournament_2.created_at}",
-      "#{@tournament_3.name} created on: #{@tournament_3.created_at}", 
-      "#{@tournament_4.name} created on: #{@tournament_4.created_at}", 
+      "#{@tournament_6.name} created on: #{@tournament_6.created_at}",
       "#{@tournament_5.name} created on: #{@tournament_5.created_at}",
-      "#{@tournament_6.name} created on: #{@tournament_6.created_at}"
-    ]
+      "#{@tournament_4.name} created on: #{@tournament_4.created_at}", 
+      "#{@tournament_3.name} created on: #{@tournament_3.created_at}", 
+      "#{@tournament_2.name} created on: #{@tournament_2.created_at}",
+      "#{@tournament_1.name} created on: #{@tournament_1.created_at}"
+        ]
 
     expect(actual).to eq(expected)
 
-    @tournament_1.update(created_at:3.days.ago)
-    @tournament_2.update(created_at:3.days.ago)
-    @tournament_3.update(created_at:1.days.ago)
-    @tournament_4.update(created_at:1.days.ago)
-    @tournament_5.update(created_at:6.days.ago)
-    @tournament_6.update(created_at:6.days.ago)
+    @tournament_1.update(created_at:70.days.ago)
+    @tournament_2.update(created_at:50.days.ago)
+    @tournament_3.update(created_at:80.days.ago)
+    @tournament_4.update(created_at:100.days.ago)
+    @tournament_5.update(created_at:90.days.ago)
+    @tournament_6.update(created_at:60.days.ago)
     
     visit "/tournaments"
-
     actual = page.all('h3').map(&:text)
 
     expected = [
-      "#{@tournament_5.name} created on: #{@tournament_5.created_at}",
+      "#{@tournament_2.name} created on: #{@tournament_2.created_at}",
       "#{@tournament_6.name} created on: #{@tournament_6.created_at}", 
       "#{@tournament_1.name} created on: #{@tournament_1.created_at}", 
-      "#{@tournament_2.name} created on: #{@tournament_2.created_at}", 
-      "#{@tournament_3.name} created on: #{@tournament_3.created_at}",
+      "#{@tournament_3.name} created on: #{@tournament_3.created_at}", 
+      "#{@tournament_5.name} created on: #{@tournament_5.created_at}",
       "#{@tournament_4.name} created on: #{@tournament_4.created_at}"
     ]
 
     expect(actual).to eq(expected)
-
   end
+  # LEFT OFF HERE 5/15 at 5:15 pm
+  # it "has a link to '/tournaments/new'" do 
+  #   visit "/tournaments"
+
+  #   click_link("Create Tournament")
+
+  #   expect(current_path).to eq("/tournaments/new")
+  # end
+
 end
