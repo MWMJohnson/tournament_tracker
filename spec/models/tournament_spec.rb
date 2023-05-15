@@ -31,27 +31,45 @@ RSpec.describe Tournament do
     @dg_12 = @tournament_5.discgolfers.create!(name: "Willy Nelseon", rating: 250, pdga_member: true)
   end
 
-  describe 'instance methods' do 
-      # [X] done
+#   [X] done
 
-      # User Story 7, Parent Child Count
+# User Story 6, Parent Index sorted by Most Recently Created 
 
-      # As a visitor
-      # When I visit a parent's show page
-      # I see a count of the number of children associated with this parent
-      describe '#count_discgolfers' do
-        it 'returns the number of discgolfers in the tournament' do
-          expect(@tournament_1.count).to eq(3)
-          expect(@tournament_2.count).to eq(2)
-          expect(@tournament_3.count).to eq(1)
-          expect(@tournament_4.count).to eq(4)
-          expect(@tournament_5.count).to eq(2)
-          expect(@tournament_6.count).to eq(0)
-        end
+# As a visitor
+# When I visit the parent index,
+# I see that records are ordered by most recently created first
+# And next to each of the records I see when it was created
+  describe 'class methods'
+    describe '#tournament_sort' do
+      it 'sorts the tournaments by the most recently created' do
+        expect(Tournament.tournament_sort).to eq([@tournament_6, @tournament_5, @tournament_4, @tournament_3, @tournament_2, @tournament_1])
+        @tournament_1.update(created_at:70.days.ago)
+        @tournament_2.update(created_at:50.days.ago)
+        @tournament_3.update(created_at:80.days.ago)
+        @tournament_4.update(created_at:100.days.ago)
+        @tournament_5.update(created_at:90.days.ago)
+        @tournament_6.update(created_at:60.days.ago)
+        expect(Tournament.tournament_sort).to eq([@tournament_2, @tournament_6, @tournament_1, @tournament_3, @tournament_5, @tournament_4])
       end
+    end
 
-      
+  # [X] done
+
+  # User Story 7, Parent Child Count
+
+  # As a visitor
+  # When I visit a parent's show page
+  # I see a count of the number of children associated with this parent
+  describe 'instance methods' do 
+    describe '#count_discgolfers' do
+      it 'returns the number of discgolfers in the tournament' do
+        expect(@tournament_1.golfer_count).to eq(3)
+        expect(@tournament_2.golfer_count).to eq(2)
+        expect(@tournament_3.golfer_count).to eq(1)
+        expect(@tournament_4.golfer_count).to eq(4)
+        expect(@tournament_5.golfer_count).to eq(2)
+        expect(@tournament_6.golfer_count).to eq(0)
+      end
+    end
   end
-
-
 end
