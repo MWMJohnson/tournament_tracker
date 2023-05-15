@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get '/discgolfers', to: 'discgolfers#index'
   get '/discgolfers/:id', to: 'discgolfers#show'
   get "/tournaments/:tournament_id/discgolfers", to: 'tournament_discgolfers#index'
+  
 end

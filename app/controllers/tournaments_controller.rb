@@ -1,6 +1,7 @@
 class TournamentsController < ApplicationController
   def index
-    @tournaments = Tournament.all.order(:created_at)
+    #COME BACK TO LINE 4 and move (order.created_at logic to the model) !!!!!!
+    @tournaments = Tournament.tournament_sort
   end
 
   def show

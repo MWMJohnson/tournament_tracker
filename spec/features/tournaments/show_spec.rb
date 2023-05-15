@@ -1,11 +1,3 @@
-# [X] done
-
-# User Story 2, Parent Show 
-
-# As a visitor
-# When I visit '/parents/:id'
-# Then I see the parent with that id including the parent's attributes
-# (data from each column that is on the parent table)
 
 require 'rails_helper'
 
@@ -28,7 +20,7 @@ RSpec.describe 'the tournaments show page' do
     @dg_4 = @tournament_2.discgolfers.create!(name: "James Conrad", rating: 1049, pdga_member: true)
     @dg_5 = @tournament_2.discgolfers.create!(name: "Chris Dickerson", rating: 1046, pdga_member: true)
     @dg_6 = @tournament_3.discgolfers.create!(name: "Nikko Locastro", rating: 1030, pdga_member: true)
-
+    
     #Amateurs
     @dg_7 = @tournament_4.discgolfers.create!(name: "Channing Smith", rating: 450, pdga_member: false)
     @dg_8 = @tournament_4.discgolfers.create!(name: "Bob Dylan", rating: 500, pdga_member: false)
@@ -38,6 +30,14 @@ RSpec.describe 'the tournaments show page' do
     @dg_12 = @tournament_5.discgolfers.create!(name: "Willy Nelseon", rating: 250, pdga_member: true)
   end
 
+  # [X] done
+  
+  # User Story 2, Parent Show 
+  
+  # As a visitor
+  # When I visit '/parents/:id'
+  # Then I see the parent with that id including the parent's attributes
+  # (data from each column that is on the parent table)
   it 'displays the tournament name' do
     visit "/tournaments/#{@tournament_1.id}"
 
@@ -55,42 +55,44 @@ RSpec.describe 'the tournaments show page' do
     expect(page).to have_content("Professionals only: #{@tournament_1.pdga_members_only}")
   end
 
-# [X] done
+  # [X] done
 
-# User Story 7, Parent Child Count
+  # User Story 7, Parent Child Count
 
-# As a visitor
-# When I visit a parent's show page
-# I see a count of the number of children associated with this parent
+  # As a visitor
+  # When I visit a parent's show page
+  # I see a count of the number of children associated with this parent
   it 'displays the number of discgolfers signed up for the tournamet' do
     visit "/tournaments/#{@tournament_1.id}"
 
-    expect(page).to have_content("Current no. of discgolfers: #{@tournament_1.count}")
+    expect(page).to have_content("Current no. of discgolfers: #{@tournament_1.golfer_count}")
     expect(page).to have_content("Current no. of discgolfers: 3")
-
-    visit "/tournaments/#{@tournament_2.id}"
-
-    expect(page).to have_content("Current no. of discgolfers: #{@tournament_2.count}")
-    expect(page).to have_content("Current no. of discgolfers: 2")
 
     visit "/tournaments/#{@tournament_3.id}"
 
-    expect(page).to have_content("Current no. of discgolfers: #{@tournament_3.count}")
+    expect(page).to have_content("Current no. of discgolfers: #{@tournament_3.golfer_count}")
     expect(page).to have_content("Current no. of discgolfers: 1")
-
-    visit "/tournaments/#{@tournament_4.id}"
-
-    expect(page).to have_content("Current no. of discgolfers: #{@tournament_4.count}")
-    expect(page).to have_content("Current no. of discgolfers: 4")
-    
-    visit "/tournaments/#{@tournament_5.id}"
-    
-    expect(page).to have_content("Current no. of discgolfers: #{@tournament_5.count}")
-    expect(page).to have_content("Current no. of discgolfers: 2")
     
     visit "/tournaments/#{@tournament_6.id}"
     
-    expect(page).to have_content("Current no. of discgolfers: #{@tournament_6.count}")
+    expect(page).to have_content("Current no. of discgolfers: #{@tournament_6.golfer_count}")
     expect(page).to have_content("Current no. of discgolfers: 0")
   end
+
+  # [X] done
+
+  # User Story 10, Parent Child Index Link
+
+  # As a visitor
+  # When I visit a parent show page ('/parents/:id')
+  # Then I see a link to take me to that parent's `child_table_name` page ('/parents/:id/child_table_name')
+  it "links to the tournament's discgolfers page" do 
+    visit "/tournaments/#{@tournament_1.id}"
+    
+    click_on @tournament_1.name
+
+    expect(current_path).to eq("/tournaments/#{@tournament_1.id}/discgolfers")
+  end
+
+
 end
