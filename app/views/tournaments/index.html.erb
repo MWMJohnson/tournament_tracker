@@ -4,3 +4,7 @@
 <% @tournaments.each do |tournament| %>
   <h3><%= tournament.name %> created on: <%=tournament.created_at %></h3>
 <% end %>
+
+
+<h4><%= link_to "New Tournament", '/tournaments/new' %></h4>
+
