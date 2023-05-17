@@ -34,7 +34,7 @@ RSpec.describe 'the discgolfers show page' do
     expect(page).to_not have_content(@dg_1.pdga_member)
   end
 
-  #   [ ] done
+  #   [X] done
 
   # User Story 14, Child Update 
 
