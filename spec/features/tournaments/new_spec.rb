@@ -41,7 +41,7 @@ RSpec.describe "New Tournaments Form", type: :feature do
         expect(page).to have_button("Create Tournament")
       end
 
-      it "can create a new artist" do
+      it "the new tournament is displayed on the tournament index page" do
         visit "/tournaments/new"
     
         fill_in(:name, with: "Regional Pro Open 4")
