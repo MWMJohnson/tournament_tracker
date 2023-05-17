@@ -93,13 +93,12 @@ RSpec.describe "tournaments index page", type: :feature do
 
     expect(actual).to eq(expected)
   end
-  # LEFT OFF HERE 5/15 at 5:15 pm
-  # it "has a link to '/tournaments/new'" do 
-  #   visit "/tournaments"
 
-  #   click_link("Create Tournament")
-
-  #   expect(current_path).to eq("/tournaments/new")
-  # end
+  it "has a link to /tournaments/new" do 
+    visit "/tournaments"
+    
+    click_link("New Tournament")
+    expect(current_path).to eq("/tournaments/new")   
+  end
 
 end
