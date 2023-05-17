@@ -4,3 +4,7 @@
   <p> Entry fee: $ <%= @tournament.entry_fee %></p>
   <p> Professionals only: <%= @tournament.pdga_members_only %></p>
   <p> Current no. of discgolfers: <%= @tournament.golfer_count %></p>
+<p><%= link_to "Update Tournament", "/tournaments/#{@tournament.id}/edit" %></p>
+
+
+

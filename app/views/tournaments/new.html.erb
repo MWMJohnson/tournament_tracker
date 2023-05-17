@@ -1,0 +1,12 @@
+<%= form_with url: '/tournaments', method: :post, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :course %>
+  <%= form.text_field :course %>
+  <%= form.label :entry_fee %>
+  <%= form.text_field :entry_fee %>
+  <%= form.label :pdga_members_only %>
+  <%= form.check_box :pdga_members_only %>
+
+  <%= form.submit "Create Tournament" %>
+<% end %>
