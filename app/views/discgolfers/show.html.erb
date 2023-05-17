@@ -1,3 +1,4 @@
 <h1><%= @discgolfer.name %> </h1>
 <p>Rating: <%= @discgolfer.rating %></p>
 <p>PDGA Member: <%= @discgolfer.pdga_member %></p>
+<h4><%= link_to "Update Discgolfer", "/discgolfers/#{@discgolfer.id}/edit" %></h4>
