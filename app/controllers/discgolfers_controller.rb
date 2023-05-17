@@ -1,6 +1,6 @@
 class DiscgolfersController < ApplicationController
   def index
-    @discgolfers = Discgolfer.all
+    @discgolfers = Discgolfer.members_only
   end
 
   def show
