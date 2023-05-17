@@ -28,6 +28,21 @@ RSpec.describe "New Tournaments Form", type: :feature do
     @dg_11 = @tournament_4.discgolfers.create!(name: "Ralph Lauren", rating: 380, pdga_member: false)
     @dg_12 = @tournament_4.discgolfers.create!(name: "Willy Nelseon", rating: 250, pdga_member: true)
   end
+
+  #   [X] done
+
+  # User Story 11, Parent Creation 
+
+  # As a visitor
+  # When I visit the Parent Index page
+  # Then I see a link to create a new Parent record, "New Parent"
+  # When I click this link
+  # Then I am taken to '/parents/new' where I  see a form for a new parent record
+  # When I fill out the form with a new parent's attributes:
+  # And I click the button "Create Parent" to submit the form
+  # Then a `POST` request is sent to the '/parents' route,
+  # a new parent record is created,
+  # and I am redirected to the Parent Index page where I see the new Parent displayed.
   describe "New Tournaments page '/tournaments/new" do
     describe "It can create a new tournament" do 
       it " display a page to enter a new tournament" do 
