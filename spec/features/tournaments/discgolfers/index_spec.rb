@@ -52,4 +52,12 @@ RSpec.describe 'Tournaments discgolfers index' do
     expect(page).to have_content("Rating: #{@dg_7.rating}")
     expect(page).to have_content("PDGA Member: #{@dg_7.pdga_member}")   
   end
+
+  it "has a link to the update tournament page" do 
+    visit "/tournaments/#{@tournament.id}/discgolfers"
+    
+    click_link("New Discgolfer")
+    expect(current_path).to eq("/tournaments/#{@tournament.id}/discgolfers/new")   
+  end
+
 end
