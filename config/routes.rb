@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   get "/tournaments/:tournament_id/discgolfers", to: 'tournament_discgolfers#index'
   post "/tournaments", to: 'tournaments#create'
   get "/tournaments/:id/edit", to: "tournaments#edit"
+  patch '/tournaments/:id', to: "tournaments#update"
+  get "/tournaments/:id/discgolfers/new", to: 'tournament_discgolfers#new'
+  post "/tournaments/:id/discgolfers", to: 'tournament_discgolfers#create'
+  get "/discgolfers/:id/edit", to: 'discgolfers#edit'
+  patch "/discgolfers/:id", to: 'discgolfers#update'
 end
