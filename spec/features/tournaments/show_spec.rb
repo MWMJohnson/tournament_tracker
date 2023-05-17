@@ -116,6 +116,8 @@ RSpec.describe 'the tournaments show page' do
     expect(current_path).to eq("/tournaments/#{@tournament_1.id}/edit")
   end
 
+  
+
 
 
 end
