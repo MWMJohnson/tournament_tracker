@@ -14,7 +14,7 @@ RSpec.describe "discgolfers index page", type: :feature do
     @tournament = Tournament.create!(name: "Regional AM Open 1", course: "Village Greens", date: Date.new(2023,6,1), entry_fee: 100, pdga_members_only: false)
     @tournament_2 = Tournament.create!(name: "Regional Pro Open 1", course: "Fehringer Ranch", date: Date.new(2023,6,2), entry_fee: 200, pdga_members_only: true)
     @dg_1 = @tournament_2.discgolfers.create!(name: "Eagle McMahon", rating: 1046, pdga_member: true)
-    @dg_2 = @tournament.discgolfers.create!(name: "Channing Smith", rating: 450, pdga_member: false)
+    @dg_2 = @tournament.discgolfers.create!(name: "Channing Smith", rating: 450, pdga_member: true)
   end
 
   it " can show all discgolfers with their attributes" do 
