@@ -33,4 +33,26 @@ RSpec.describe 'the discgolfers show page' do
     expect(page).to have_content(@dg_2.pdga_member)
     expect(page).to_not have_content(@dg_1.pdga_member)
   end
+
+  #   [X] done
+
+  # User Story 14, Child Update 
+
+  # As a visitor
+  # When I visit a Child Show page
+  # Then I see a link to update that Child "Update Child"
+  # When I click the link
+  # I am taken to '/child_table_name/:id/edit' where I see a form to edit the child's attributes:
+  # When I click the button to submit the form "Update Child"
+  # Then a `PATCH` request is sent to '/child_table_name/:id',
+  # the child's data is updated,
+  # and I am redirected to the Child Show page where I see the Child's updated information
+  it "links to the discgolfer update page" do
+    visit "/discgolfers/#{@dg_1.id}"
+
+    click_link "Update Discgolfer"
+    expect(current_path).to eq("/discgolfers/#{@dg_1.id}/edit")
+  end
+
+
 end

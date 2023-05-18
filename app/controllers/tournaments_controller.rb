@@ -1,6 +1,5 @@
 class TournamentsController < ApplicationController
   def index
-    #COME BACK TO LINE 4 and move (order.created_at logic to the model) !!!!!!
     @tournaments = Tournament.tournament_sort
   end
 
@@ -11,14 +10,22 @@ class TournamentsController < ApplicationController
   def new
   end
 
+  def edit
+    @tournament = Tournament.find(params[:id])
+  end
+
   def create 
     tournament = Tournament.new(tournament_params)
     tournament.save
     redirect_to '/tournaments'
   end
 
-  def edit
-    
+  
+  def update
+    tournament = Tournament.find(params[:id])
+    tournament.update(tournament_params)
+    tournament.save
+    redirect_to "/tournaments/#{tournament.id}"
   end
 
   private 

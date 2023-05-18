@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "New Tournaments Form", type: :feature do
+RSpec.describe "Update Discgolfer Form", type: :feature do
   before :each do
     #Pro Tournaments
     @tournament_1 = Tournament.create!(name: "Regional Pro Open 1", course: "Fehringer Ranch", date: Date.new(2023,6,2), entry_fee: 200, pdga_members_only: true)
@@ -29,46 +29,46 @@ RSpec.describe "New Tournaments Form", type: :feature do
     @dg_12 = @tournament_4.discgolfers.create!(name: "Willy Nelseon", rating: 250, pdga_member: true)
   end
 
-  #   [X] done
+    #   [X] done
 
-  # User Story 11, Parent Creation 
+  # User Story 14, Child Update 
 
   # As a visitor
-  # When I visit the Parent Index page
-  # Then I see a link to create a new Parent record, "New Parent"
-  # When I click this link
-  # Then I am taken to '/parents/new' where I  see a form for a new parent record
-  # When I fill out the form with a new parent's attributes:
-  # And I click the button "Create Parent" to submit the form
-  # Then a `POST` request is sent to the '/parents' route,
-  # a new parent record is created,
-  # and I am redirected to the Parent Index page where I see the new Parent displayed.
-  describe "New Tournaments page '/tournaments/new" do
-    describe "It can create a new tournament" do 
-      it " display a page to enter a new tournament" do 
-        visit "/tournaments/new"
-        expect(current_path).to eq("/tournaments/new")
+  # When I visit a Child Show page
+  # Then I see a link to update that Child "Update Child"
+  # When I click the link
+  # I am taken to '/child_table_name/:id/edit' where I see a form to edit the child's attributes:
+  # When I click the button to submit the form "Update Child"
+  # Then a `PATCH` request is sent to '/child_table_name/:id',
+  # the child's data is updated,
+  # and I am redirected to the Child Show page where I see the Child's updated information
+  describe "update discgolfer page '/discgolfers/:id/edit" do
+    describe "it can update an existing discgolfer" do 
+      it "display a page to update a discgolfer" do 
+        visit "/discgolfers/#{@dg_1.id}/edit"
+        expect(current_path).to eq("/discgolfers/#{@dg_1.id}/edit")
         expect(page).to have_field("name")
-        expect(page).to have_field("course")
-        expect(page).to have_field("entry_fee")
-        expect(page).to have_field("pdga_members_only")
+        expect(page).to have_field("rating")
+        expect(page).to have_field("pdga_member")
         expect(page).to have_unchecked_field
-        expect(page).to have_button("Create Tournament")
+        expect(page).to have_button("Update Discgolfer")
       end
 
-      it "the new tournament is displayed on the tournament index page" do
-        visit "/tournaments/new"
-    
-        fill_in(:name, with: "Regional Pro Open 4")
-        fill_in(:course, with: "Johnny Roberts")
-        fill_in(:entry_fee, with: "200")
+      it "can update an existing discgolfer" do
+        visit "/discgolfers/#{@dg_1.id}/edit"
+
+        fill_in(:name, with: "Jay Leno")
+        fill_in(:rating, with: "444")
         check
     
+        click_button('Update Discgolfer')
     
-        click_button('Create Tournament')
-    
-        expect(current_path).to eq('/tournaments')
-        expect(page).to have_content("Regional Pro Open 4")
+        expect(current_path).to eq("/discgolfers/#{@dg_1.id}")
+        expect(page).to have_content("Jay Leno")
+        expect(page).to_not have_content("Eagle McMahon")
+
+        expect(page).to have_content(444)
+        expect(page).to have_content(true)
       end
     end
   end

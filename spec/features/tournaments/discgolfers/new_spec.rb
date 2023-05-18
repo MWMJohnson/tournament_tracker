@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "New Tournaments Form", type: :feature do
+RSpec.describe "new tournament discgolfers form", type: :feature do
   before :each do
     #Pro Tournaments
     @tournament_1 = Tournament.create!(name: "Regional Pro Open 1", course: "Fehringer Ranch", date: Date.new(2023,6,2), entry_fee: 200, pdga_members_only: true)
@@ -29,46 +29,46 @@ RSpec.describe "New Tournaments Form", type: :feature do
     @dg_12 = @tournament_4.discgolfers.create!(name: "Willy Nelseon", rating: 250, pdga_member: true)
   end
 
-  #   [X] done
 
-  # User Story 11, Parent Creation 
+#   [X] done
 
-  # As a visitor
-  # When I visit the Parent Index page
-  # Then I see a link to create a new Parent record, "New Parent"
-  # When I click this link
-  # Then I am taken to '/parents/new' where I  see a form for a new parent record
-  # When I fill out the form with a new parent's attributes:
-  # And I click the button "Create Parent" to submit the form
-  # Then a `POST` request is sent to the '/parents' route,
-  # a new parent record is created,
-  # and I am redirected to the Parent Index page where I see the new Parent displayed.
-  describe "New Tournaments page '/tournaments/new" do
-    describe "It can create a new tournament" do 
-      it " display a page to enter a new tournament" do 
-        visit "/tournaments/new"
-        expect(current_path).to eq("/tournaments/new")
+# User Story 13, Parent Child Creation 
+
+# As a visitor
+# When I visit a Parent Children Index page
+# Then I see a link to add a new adoptable child for that parent "Create Child"
+# When I click the link
+# I am taken to '/parents/:parent_id/child_table_name/new' where I see a form to add a new adoptable child
+# When I fill in the form with the child's attributes:
+# And I click the button "Create Child"
+# Then a `POST` request is sent to '/parents/:parent_id/child_table_name',
+# a new child object/row is created for that parent,
+# and I am redirected to the Parent Childs Index page where I can see the new child listed
+  describe "new tournament discgolfers page '/tournaments/:tournament_id/discgolfers/new" do
+    describe "it can create a discgolfer for a new tournament" do 
+      it "displays a page to create a new discgolfer for a tournament" do 
+        visit "/tournaments/#{@tournament_1.id}/discgolfers/new"
+        expect(current_path).to eq("/tournaments/#{@tournament_1.id}/discgolfers/new")
         expect(page).to have_field("name")
-        expect(page).to have_field("course")
-        expect(page).to have_field("entry_fee")
-        expect(page).to have_field("pdga_members_only")
+        expect(page).to have_field("rating")
+        expect(page).to have_field("pdga_member")
         expect(page).to have_unchecked_field
-        expect(page).to have_button("Create Tournament")
+        expect(page).to have_button("Create Discgolfer")
       end
 
-      it "the new tournament is displayed on the tournament index page" do
-        visit "/tournaments/new"
+      it "the discgolfer added to to the tournament is added to the tournament discgolfers index page" do
+        visit "/tournaments/#{@tournament_1.id}/discgolfers/new"
     
-        fill_in(:name, with: "Regional Pro Open 4")
-        fill_in(:course, with: "Johnny Roberts")
-        fill_in(:entry_fee, with: "200")
-        check
+        fill_in(:name, with: "Joe Burrow")
+        fill_in(:rating, with: 600)
+
+        click_button('Create Discgolfer')
     
-    
-        click_button('Create Tournament')
-    
-        expect(current_path).to eq('/tournaments')
-        expect(page).to have_content("Regional Pro Open 4")
+        expect(current_path).to eq("/tournaments/#{@tournament_1.id}/discgolfers")
+        expect(page).to have_content("Joe Burrow")
+        expect(page).to have_content(600)
+        expect(page).to have_content(false)
+        
       end
     end
   end
